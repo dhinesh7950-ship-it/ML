@@ -1,0 +1,20 @@
+# FIND-S Algorithm Implementation
+def find_s(training_data):
+    hypothesis=['0']*(len(training_data[0])-1)
+    print("Initial Hypothesis:",hypothesis)
+    for example in training_data:
+        if example[-1].lower()=="yes":
+            for i in range(len(hypothesis)):
+                if hypothesis[i]=='0':
+                    hypothesis[i]=example[i]
+                elif hypothesis[i]!=example[i]:
+                    hypothesis[i]='?'
+        print("Updated Hypothesis:",hypothesis)
+    return hypothesis
+n=int(input("Enter number of training examples: "))
+training_data=[]
+for i in range(n):
+    row=input("Enter example "+str(i+1)+" (space separated including Yes/No): ").split()
+    training_data.append(row)
+final_hypothesis=find_s(training_data)
+print("Final Most Specific Hypothesis:",final_hypothesis)
